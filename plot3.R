@@ -9,7 +9,7 @@ data <- subset(data, Date == "1/2/2007" | Date == "2/2/2007")
 data$timeanddate <- paste(data$Date,data$Time)
 data$timeanddate <- strptime(data$timeanddate, "%d/%m/%Y %H:%M:%S")
 
-## Create plot: Use par(new = T) to keep adding to first plot.
+## Create plot
 png("plot3.png")
 with(data, plot(timeanddate, Sub_metering_1, 
                 xlab = "",  
