@@ -9,11 +9,15 @@ data <- subset(data, Date == "1/2/2007" | Date == "2/2/2007")
 data$timeanddate <- paste(data$Date,data$Time)
 data$timeanddate <- strptime(data$timeanddate, "%d/%m/%Y %H:%M:%S")
 
-## Create plot
-png("plot2.png")
-with(data, plot(timeanddate, Global_active_power, 
-        xlab = "",  
-        ylab = "Global Active Power (kilowatts)",
-        type = "l")
-     )
-dev.off()
+## Create plot: Use par(new = T) to keep adding to first plot.
+png("plot3.png")
+with(data, plot(timeanddate, Sub_metering_1, 
+                xlab = "",  
+                ylab = "Energy sub metering",
+                type = "l")
+    )
+with(data, lines(timeanddate, Sub_metering_2, col = "red"))
+with(data, lines(timeanddate, Sub_metering_3, col = "blue"))
+legend("topright", lty=1, col = c("black", "red", "blue"),
+      legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+dev.off() 
